@@ -1,0 +1,1728 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pink Date ♡</title>
+<meta name="description" content="Notre agenda de couple partagé — tous nos moments, au même endroit.">
+<meta name="theme-color" content="#FFF8FB">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Pink Date">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎀</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Young+Serif&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pastel:#FFD6E7; --bonbon:#FF8FBD; --vif:#F45B9A; --noir:#171319; --blanc:#FFF8FB;
+  --gris:#857781; --gris2:#B3A6AF; --line:#F5D9E6; --card:#FFFFFF; --soft:#FFF0F6;
+  --ok:#2F9E6A; --danger:#D23A4B;
+  --shadow:0 8px 24px rgba(244,91,154,.10), 0 1px 2px rgba(23,19,25,.05);
+  --font-d:'Young Serif', Georgia, 'Times New Roman', serif;
+  --font:'Outfit', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --safe-t:env(safe-area-inset-top,0px); --safe-b:env(safe-area-inset-bottom,0px);
+}
+[hidden]{display:none!important}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--font);font-size:16px;line-height:1.45;color:var(--noir);background:var(--blanc);
+  min-height:100vh;min-height:100dvh;overflow-x:hidden;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:
+  radial-gradient(520px 380px at 105% -8%, rgba(255,143,189,.26), transparent 62%),
+  radial-gradient(480px 360px at -18% 34%, rgba(255,214,231,.75), transparent 62%),
+  var(--blanc)}
+button,input,select,textarea{font:inherit;color:inherit}
+button{background:none;border:0;cursor:pointer}
+input,select,textarea{font-size:16px}
+svg{flex-shrink:0}
+a{color:var(--vif)}
+:focus-visible{outline:2.5px solid var(--vif);outline-offset:2px;border-radius:10px}
+.muted{color:var(--gris)} .small{font-size:13px} .center{text-align:center}
+.hint{font-size:13.5px;color:var(--gris);margin:6px 0 10px}
+.hint.warn{color:#A2416F;background:var(--soft);padding:10px 12px;border-radius:12px}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.92em}
+
+/* ---------- Écrans ---------- */
+.screen{min-height:100vh;min-height:100dvh}
+.screen.center{display:flex;justify-content:center;padding:calc(var(--safe-t) + 34px) 18px calc(var(--safe-b) + 34px)}
+.narrow{width:100%;max-width:440px}
+
+/* ---------- Logo ---------- */
+.logo-block{text-align:center;margin-bottom:24px}
+.logo-bow{font-size:46px;line-height:1;display:inline-block;transform-origin:50% 60%}
+.logo{font-family:var(--font-d);font-weight:400;font-size:42px;letter-spacing:-.01em;line-height:1.1;margin-top:6px}
+.logo .h{color:var(--vif)}
+.tagline{color:var(--gris);margin-top:6px}
+
+/* ---------- Cartes ---------- */
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px;box-shadow:var(--shadow);margin-bottom:14px}
+.card h3{display:flex;align-items:center;gap:8px;font-size:17px;font-weight:700;margin-bottom:12px}
+.card h3 svg{color:var(--vif)}
+.card h4{font-size:14px;font-weight:700;margin:14px 0 8px}
+details.card>summary{cursor:pointer;list-style:none;font-weight:700}
+details>summary::-webkit-details-marker{display:none}
+.card details{border-top:1px dashed var(--line);padding:10px 0}
+.card details>summary{font-weight:600;cursor:pointer;padding:6px 0;list-style:none}
+.card details>summary::after{content:" ›";color:var(--vif);font-weight:800}
+.card details[open]>summary{margin-bottom:10px}
+
+/* ---------- Champs ---------- */
+.field{display:block;margin-bottom:12px}
+.field>span{display:block;font-size:13.5px;font-weight:600;color:var(--gris);margin:0 0 6px 4px}
+.field input,.field select,.field textarea{width:100%;min-height:50px;padding:12px 14px;border:1.5px solid var(--line);border-radius:14px;
+  background:#FFFCFD;outline:none;transition:border-color .15s, box-shadow .15s;-webkit-appearance:none;appearance:none;text-align:left}
+.field textarea{resize:vertical;min-height:88px}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23F45B9A' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 14px center;padding-right:38px}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--bonbon);box-shadow:0 0 0 4px rgba(255,143,189,.22)}
+.field input::-webkit-date-and-time-value{text-align:left}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.inv-form{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0 10px;align-items:end}
+.inv-form .btn{grid-column:1/-1}
+
+/* ---------- Boutons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 18px;border-radius:16px;
+  font-weight:700;font-size:15.5px;transition:transform .12s, background .2s, box-shadow .2s;position:relative;text-align:center}
+.btn:active{transform:scale(.97)}
+.btn.primary{background:var(--vif);color:#fff;box-shadow:0 8px 18px rgba(244,91,154,.30)}
+.btn.primary:hover{background:#E84C8D}
+.btn.dark{background:var(--noir);color:var(--blanc)}
+.btn.ghost{background:var(--soft);color:var(--noir)}
+.btn.ghost:hover{background:#FFE4EF}
+.btn.danger{background:#E0424F;color:#fff}
+.btn.danger-ghost{background:#FFECEE;color:var(--danger)}
+.btn.link{background:none;color:var(--gris);text-decoration:underline;min-height:44px}
+.btn.block{width:100%}
+.btn.sm{min-height:42px;padding:0 14px;font-size:14.5px;border-radius:13px}
+.btn.xs{min-height:36px;padding:0 11px;font-size:13px;border-radius:11px}
+.btn:disabled{opacity:.6;cursor:default}
+.btn.loading{color:transparent!important}
+.btn.loading>*{visibility:hidden}
+.btn.loading::after{content:"";position:absolute;width:20px;height:20px;border-radius:50%;border:2.5px solid rgba(255,255,255,.5);border-top-color:#fff;animation:spin .7s linear infinite}
+.btn.ghost.loading::after,.btn.danger-ghost.loading::after,.btn.xs.loading::after{border-color:rgba(244,91,154,.3);border-top-color:var(--vif)}
+.icon-btn{width:46px;height:46px;display:inline-grid;place-items:center;border-radius:14px;background:var(--soft);color:var(--noir);flex-shrink:0}
+.icon-btn.sm{width:40px;height:40px;border-radius:12px}
+.icon-btn.danger{color:var(--danger);background:#FFECEE}
+.row-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.row-btns .btn{flex:1 1 120px}
+.row-btns .btn.square{flex:0 0 52px;padding:0}
+.btn-col{display:grid;gap:10px}
+.link-btn{color:var(--vif);font-weight:700;font-size:14px;min-height:36px;padding:0 4px}
+
+/* ---------- Onglets segmentés ---------- */
+.seg{display:flex;background:var(--soft);border-radius:16px;padding:4px;gap:4px;margin-bottom:16px}
+.seg button{flex:1;min-height:42px;border-radius:12px;font-weight:700;font-size:14.5px;color:var(--gris)}
+.seg button.active{background:#fff;color:var(--noir);box-shadow:0 2px 8px rgba(23,19,25,.08)}
+
+/* ---------- Messages ---------- */
+.form-msg{padding:12px 14px;border-radius:14px;font-size:14.5px;margin-top:12px}
+.form-msg.error{background:#FFECEE;color:#A61E30}
+.form-msg.ok{background:#EAF7EF;color:#1C6E45}
+.form-error{background:#FFECEE;color:#A61E30;padding:10px 12px;border-radius:12px;font-size:14px;margin:4px 0 8px}
+.invite-banner{background:var(--noir);color:var(--pastel);border-radius:18px;padding:14px 16px;margin-bottom:14px;font-weight:600}
+
+/* ---------- Barre du haut ---------- */
+.topbar{position:sticky;top:0;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:10px;
+  padding:calc(var(--safe-t) + 10px) 16px 10px;background:rgba(255,248,251,.88);
+  -webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid rgba(245,217,230,.8)}
+.brand{font-family:var(--font-d);font-size:21px;line-height:1}
+.brand .h{color:var(--vif)}
+.space-name{font-size:12.5px;color:var(--gris);font-weight:600;margin-top:4px;max-width:52vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sync{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;font-weight:700;padding:7px 11px;border-radius:999px;background:#fff;border:1px solid var(--line);white-space:nowrap}
+.sync i{width:8px;height:8px;border-radius:50%;background:var(--gris2)}
+.sync.live i{background:var(--ok);box-shadow:0 0 0 3px rgba(47,158,106,.18)}
+.sync.connecting i,.sync.saving i{background:var(--bonbon);animation:pulse 1s ease-in-out infinite}
+.sync.offline{color:var(--danger)} .sync.offline i{background:var(--danger)}
+.sync.pending{color:#B0631A} .sync.pending i{background:#F0A53C}
+
+/* ---------- Contenu ---------- */
+.main{max-width:760px;margin:0 auto;padding:16px 16px calc(var(--safe-b) + 116px)}
+.page-title{font-family:var(--font-d);font-weight:400;font-size:30px;margin:6px 4px 16px}
+
+/* ---------- Accueil ---------- */
+.hero{position:relative;overflow:hidden;background:var(--noir);color:var(--blanc);border-radius:30px;padding:24px 22px 22px;margin-bottom:14px;
+  box-shadow:0 16px 34px rgba(23,19,25,.22)}
+.hero::after{content:"";position:absolute;right:-60px;top:-70px;width:230px;height:230px;border-radius:50%;
+  background:radial-gradient(circle, rgba(244,91,154,.55), rgba(244,91,154,0) 70%)}
+.hero-ribbon{position:absolute;right:18px;top:16px;font-size:34px;z-index:1;transform:rotate(12deg)}
+.hero-hello{color:var(--bonbon);font-weight:600;font-size:15px;position:relative;z-index:1}
+.hero-title{font-family:var(--font-d);font-weight:400;font-size:clamp(30px,8.6vw,42px);line-height:1.05;margin:6px 0 8px;position:relative;z-index:1;max-width:12ch}
+.hero-sub{color:#D9C9D2;font-size:15px;position:relative;z-index:1}
+.hero-date{display:inline-flex;align-items:center;gap:7px;margin-top:16px;background:rgba(255,214,231,.13);color:var(--pastel);padding:8px 13px;border-radius:999px;font-weight:600;font-size:14px;position:relative;z-index:1}
+.hero-stars{position:absolute;left:58%;bottom:16px;color:var(--bonbon);opacity:.55;font-size:14px;letter-spacing:10px;z-index:1}
+
+.next{display:block;width:100%;text-align:left;background:linear-gradient(140deg, var(--pastel), #FFEAF3 70%);border:1px solid #FFC4DC;
+  border-radius:24px;padding:18px 18px 16px;margin-bottom:12px;position:relative;overflow:hidden;cursor:pointer}
+.next.static{cursor:default}
+.next-deco{position:absolute;right:-6px;bottom:-26px;font-size:110px;line-height:1;color:rgba(244,91,154,.12);pointer-events:none}
+.next-label{font-size:14px;font-weight:700;color:var(--vif)}
+.next-count{display:inline-block;background:var(--noir);color:var(--pastel);border-radius:999px;padding:5px 11px;font-size:13px;font-weight:700;margin:8px 0 6px}
+.next h2{font-family:var(--font-d);font-weight:400;font-size:25px;line-height:1.15;overflow-wrap:anywhere;position:relative}
+.next p{color:#6B5A65;font-size:15px;margin-top:6px;display:flex;gap:7px;align-items:center;position:relative}
+.next p svg{color:var(--vif)}
+.add-big{margin-bottom:6px}
+.sec-title{display:flex;justify-content:space-between;align-items:center;margin:22px 4px 10px}
+.sec-title h3{font-family:var(--font-d);font-weight:400;font-size:21px}
+.love-note{text-align:center;color:var(--gris);font-size:14.5px;margin:28px 10px 6px;font-style:italic}
+.love-note span{color:var(--bonbon);font-style:normal}
+
+/* ---------- Carte événement ---------- */
+.ev{display:flex;gap:12px;align-items:flex-start;width:100%;text-align:left;background:#fff;border:1px solid var(--line);border-left:5px solid var(--d);
+  border-radius:18px;padding:12px 14px;margin-bottom:9px;transition:transform .12s, box-shadow .2s}
+.ev:hover{box-shadow:0 6px 16px rgba(244,91,154,.10)}
+.ev:active{transform:scale(.985)}
+.ev-emoji{width:42px;height:42px;border-radius:13px;background:var(--c);display:grid;place-items:center;font-size:20px;flex-shrink:0}
+.ev-main{min-width:0;display:flex;flex-direction:column;gap:3px}
+.ev-title{font-weight:700;font-size:16px;overflow-wrap:anywhere}
+.ev-meta{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:13.5px;color:#6B5A65}
+.ev-meta span{display:inline-flex;align-items:center;gap:4px;overflow-wrap:anywhere}
+.ev-meta svg{color:var(--d)}
+.ev-by{font-size:12.5px;color:var(--gris2)}
+.empty{text-align:center;padding:20px 16px;color:var(--gris);background:rgba(255,255,255,.7);border:1.5px dashed #FFC4DC;border-radius:20px;font-size:15px}
+.empty .btn{margin-top:12px}
+
+/* ---------- Calendrier ---------- */
+.cal-tools{display:flex;gap:10px;align-items:center;justify-content:space-between;margin-bottom:12px}
+.cal-tools .seg{margin:0;flex:1;max-width:260px}
+.cal-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:2px 0 12px}
+.cal-title{font-family:var(--font-d);font-weight:400;font-size:22px;text-align:center;flex:1}
+.cal{background:#fff;border:1px solid var(--line);border-radius:22px;padding:8px;box-shadow:var(--shadow)}
+.wk,.grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
+.wk{text-align:center;font-size:12px;font-weight:700;color:var(--gris2);padding:4px 0 6px}
+.grid{gap:3px}
+.day{min-height:62px;border-radius:12px;padding:5px 3px 4px;display:flex;flex-direction:column;align-items:center;gap:3px;overflow:hidden;transition:background .15s}
+.day:hover{background:#FFF5F9}
+.day.out{opacity:.38}
+.dnum{font-size:14.5px;font-weight:600;width:28px;height:28px;display:grid;place-items:center;border-radius:50%}
+.day.today .dnum{background:var(--noir);color:var(--pastel)}
+.day.sel{background:var(--pastel)}
+.day.sel.today .dnum{background:var(--vif);color:#fff}
+.chips{display:flex;flex-direction:column;gap:2px;width:100%;padding:0 2px}
+.chip{display:block;height:6px;border-radius:4px;background:var(--d);font-size:0;pointer-events:none}
+.more{font-size:10.5px;font-weight:700;color:var(--vif);line-height:1}
+.day-panel{margin-top:16px}
+.panel-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:0 4px 10px}
+.panel-head h3{font-family:var(--font-d);font-weight:400;font-size:20px}
+.wday{background:#fff;border:1px solid var(--line);border-radius:18px;padding:10px 12px;margin-bottom:8px}
+.wday.today{border-color:var(--bonbon);box-shadow:0 0 0 3px rgba(255,143,189,.2)}
+.wday-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:6px;min-height:40px}
+.wday-head b{font-size:15.5px}
+.wday-head small{color:var(--gris);font-size:13.5px;margin-left:4px}
+.wday .ev{margin-bottom:6px}
+.wday-empty{font-size:13.5px;color:var(--gris2);padding:0 0 4px}
+@media (min-width:640px){
+  .day{min-height:98px;align-items:stretch;padding:6px}
+  .dnum{align-self:flex-end}
+  .chip{height:auto;font-size:12px;font-weight:600;padding:2px 6px;background:var(--c);color:var(--noir);border-left:3px solid var(--d);
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:auto;cursor:pointer;text-align:left}
+  .more{text-align:left;padding-left:4px}
+}
+
+/* ---------- Liste ---------- */
+.search{display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:0 12px;min-height:50px;margin-bottom:10px;color:var(--gris)}
+.search:focus-within{border-color:var(--bonbon);box-shadow:0 0 0 4px rgba(255,143,189,.22)}
+.search input{border:0;outline:0;flex:1;min-width:0;background:none;min-height:48px;color:var(--noir)}
+.filters{display:flex;gap:6px;overflow-x:auto;padding:2px 2px 8px;margin-bottom:4px;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.fchip{flex-shrink:0;min-height:40px;padding:0 13px;border-radius:999px;background:#fff;border:1.5px solid var(--line);font-size:14px;font-weight:600}
+.fchip.active{background:var(--noir);color:var(--pastel);border-color:var(--noir)}
+.date-h{font-size:14px;font-weight:700;color:var(--vif);margin:18px 4px 8px}
+
+/* ---------- Barre de navigation ---------- */
+.tabbar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(10px + var(--safe-b));width:min(520px, calc(100% - 20px));
+  background:var(--noir);border-radius:26px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:center;padding:7px;z-index:50;
+  box-shadow:0 14px 30px rgba(23,19,25,.30)}
+.tab{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#CDBDC6;font-size:11px;font-weight:600;min-height:52px;border-radius:19px;padding:0 2px;transition:background .2s,color .2s}
+.tab span{max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tab.active{color:var(--noir);background:var(--pastel)}
+.tab-add{justify-self:center;width:58px;height:58px;margin-top:-26px;border-radius:50%;background:var(--vif);color:#fff;display:grid;place-items:center;
+  box-shadow:0 10px 22px rgba(244,91,154,.45), 0 0 0 5px var(--blanc);transition:transform .15s}
+.tab-add:active{transform:scale(.93)}
+.tab-add.off{background:#5B4F57;box-shadow:0 0 0 5px var(--blanc)}
+
+/* ---------- Modales ---------- */
+.modal-root{position:fixed;inset:0;z-index:100;display:flex;align-items:flex-end;justify-content:center}
+.modal-backdrop{position:absolute;inset:0;background:rgba(23,19,25,.45);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);opacity:0;transition:opacity .2s}
+.modal-sheet{position:relative;width:100%;max-width:560px;max-height:92vh;max-height:92dvh;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;
+  background:var(--blanc);border-radius:28px 28px 0 0;padding:10px 18px calc(var(--safe-b) + 20px);transform:translateY(40px);opacity:0;
+  transition:transform .28s cubic-bezier(.2,.9,.3,1.15), opacity .2s}
+.modal-sheet::before{content:"";display:block;width:42px;height:5px;border-radius:3px;background:#F3C6D9;margin:0 auto 10px}
+.modal-root.open .modal-backdrop{opacity:1}
+.modal-root.open .modal-sheet{transform:none;opacity:1}
+.modal-head{display:flex;justify-content:space-between;align-items:center;gap:10px;margin:4px 0 14px}
+.modal-head h2{font-family:var(--font-d);font-weight:400;font-size:24px;line-height:1.15}
+.confirm{z-index:110;align-items:center;padding:20px}
+.confirm .modal-sheet{max-width:400px;text-align:center;border-radius:26px;padding:22px 18px 18px}
+.confirm .modal-sheet::before{display:none}
+.confirm h3{font-family:var(--font-d);font-weight:400;font-size:22px;margin:6px 0 8px}
+.confirm p{color:#5D4E58}
+.confirm-icon{font-size:36px}
+@media (min-width:640px){
+  .modal-root{align-items:center;padding:20px}
+  .modal-sheet{border-radius:28px;padding-bottom:22px}
+  .modal-sheet::before{display:none}
+}
+
+/* Choix de catégorie */
+.cat-picker{display:flex;flex-wrap:wrap;gap:7px}
+.cat-opt{position:relative}
+.cat-opt input{position:absolute;opacity:0;width:1px;height:1px}
+.cat-opt span{display:inline-flex;align-items:center;gap:5px;min-height:42px;padding:0 13px;border-radius:999px;background:var(--c);font-size:14px;font-weight:600;
+  border:2px solid transparent;cursor:pointer;transition:border-color .15s, transform .15s}
+.cat-opt input:checked+span{border-color:var(--d);transform:scale(1.03)}
+.cat-opt input:focus-visible+span{outline:2.5px solid var(--vif);outline-offset:2px}
+
+/* Interrupteur */
+.switch{display:flex;align-items:center;gap:12px;min-height:46px;margin:0 0 12px;font-weight:600;cursor:pointer;position:relative}
+.switch input{position:absolute;opacity:0;width:1px;height:1px}
+.switch .track{width:50px;height:30px;border-radius:999px;background:#EED9E3;position:relative;transition:background .2s;flex-shrink:0}
+.switch .track::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 2px 5px rgba(0,0,0,.15);transition:transform .2s}
+.switch input:checked+.track{background:var(--vif)}
+.switch input:checked+.track::after{transform:translateX(20px)}
+.switch input:focus-visible+.track{outline:2.5px solid var(--vif);outline-offset:2px}
+
+/* Détail d’un événement */
+.badge-cat{display:inline-flex;gap:6px;align-items:center;background:var(--c);padding:7px 13px;border-radius:999px;font-weight:700;font-size:13.5px}
+.detail-title{font-family:var(--font-d);font-weight:400;font-size:27px;line-height:1.15;margin:4px 0 12px;overflow-wrap:anywhere}
+.detail-row{display:flex;gap:12px;align-items:flex-start;padding:11px 2px;border-top:1px solid var(--line);font-size:15.5px;overflow-wrap:anywhere}
+.detail-row svg{color:var(--vif);margin-top:2px}
+.detail-desc{white-space:pre-wrap}
+.meta{font-size:13px;color:var(--gris);margin:4px 0 6px}
+
+/* Membres et invitations */
+.member{display:flex;align-items:center;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--bonbon),var(--vif));color:#fff;display:grid;place-items:center;font-weight:700;font-size:17px;flex-shrink:0}
+.member-main{flex:1;min-width:140px;display:flex;flex-direction:column}
+.member-main b{font-weight:700;overflow-wrap:anywhere}
+.member-main small{color:var(--gris);font-size:12.5px}
+.badge{align-self:flex-start;font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:999px;background:#F2EAF0;color:var(--gris);margin:3px 0 2px}
+.badge.admin{background:var(--noir);color:var(--pastel)}
+.member-actions{display:flex;gap:6px;flex-wrap:wrap}
+.member-foot{padding-top:12px}
+.inv{display:flex;justify-content:space-between;gap:10px;align-items:center;padding:10px 12px;background:#FFF6FA;border-radius:14px;margin-bottom:8px}
+.inv-main{min-width:0}
+.inv code{font-weight:700;letter-spacing:.05em;font-size:15px}
+.inv small{display:block;color:var(--gris);font-size:12.5px;margin-top:2px}
+.inv-actions{display:flex;gap:6px}
+.code-big{display:block;text-align:center;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-weight:700;letter-spacing:.06em;
+  font-size:clamp(16px,5.2vw,21px);background:var(--noir);color:var(--pastel);padding:16px 12px;border-radius:18px;margin:12px 0;word-break:break-all;-webkit-user-select:all;user-select:all}
+.copy-box{background:#fff;border:1.5px dashed var(--bonbon);border-radius:14px;padding:12px;font-size:14px;word-break:break-all;-webkit-user-select:all;user-select:all}
+.tips{padding-left:20px;font-size:14.5px;color:#5D4E58;display:grid;gap:6px;margin:10px 0}
+.file-btn{cursor:pointer}
+.footer-note{text-align:center;color:var(--gris2);font-size:13px;margin:24px 0 8px}
+
+/* Guide intégré */
+.sql-pre,.code-pre{background:var(--noir);color:#F6E7EE;border-radius:14px;padding:12px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:12px;line-height:1.5;overflow:auto;max-height:340px;white-space:pre;margin:8px 0}
+.guide .tips code{background:var(--soft);padding:1px 5px;border-radius:6px;word-break:break-all}
+
+.guide .tips code{background:var(--soft);padding:1px 5px;border-radius:6px;word-break:break-all}
+
+/* Notifications */
+#toasts{position:fixed;left:50%;transform:translateX(-50%);top:calc(var(--safe-t) + 12px);z-index:200;display:flex;flex-direction:column;gap:8px;
+  width:min(420px, calc(100% - 24px));pointer-events:none}
+.toast{background:var(--noir);color:var(--blanc);padding:12px 16px;border-radius:16px;font-weight:600;font-size:15px;box-shadow:0 10px 26px rgba(23,19,25,.28);
+  animation:toastIn .25s ease;transition:opacity .3s, transform .3s}
+.toast.ok::before{content:"♡ ";color:var(--bonbon)}
+.toast.error{background:#A61E30}
+.toast.out{opacity:0;transform:translateY(-8px)}
+
+/* Chargement */
+.loader{display:flex;flex-direction:column;align-items:center;gap:14px;padding:56px 20px;color:var(--gris);text-align:center}
+.heart-beat{font-size:44px;color:var(--vif);animation:beat 1.1s ease-in-out infinite;line-height:1}
+
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pulse{50%{opacity:.35}}
+@keyframes beat{0%,100%{transform:scale(1)}30%{transform:scale(1.18)}60%{transform:scale(.96)}}
+@keyframes toastIn{from{opacity:0;transform:translateY(-10px)}}
+@keyframes wiggle{0%,100%{transform:rotate(0)}25%{transform:rotate(-10deg)}75%{transform:rotate(8deg)}}
+.logo-bow{animation:wiggle 1.4s ease-in-out 1 .3s}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Écran : configuration manquante -->
+<section class="screen center" id="screen-setup" hidden>
+  <div class="narrow">
+    <div class="logo-block">
+      <div class="logo-bow">🎀</div>
+      <h1 class="logo">Pink Date <span class="h">♡</span></h1>
+      <p class="tagline">Encore une petite étape avant de commencer</p>
+    </div>
+    <div class="card">
+      <h3>⚙️ Installation à terminer</h3>
+      <p>L’application n’est pas encore reliée à votre base partagée JSONBin. Rien n’est enregistré tant que ce n’est pas fait.</p>
+    </div>
+    <div id="setup-guide"></div>
+  </div>
+</section>
+
+<!-- Écran : chargement / erreur -->
+<section class="screen center" id="screen-loading">
+  <div class="narrow">
+    <div class="loader">
+      <div class="heart-beat">♥</div>
+      <p id="loading-text">Chargement de notre petit monde…</p>
+      <div id="loading-actions" class="row-btns" hidden>
+        <button type="button" class="btn primary" data-action="reload">Réessayer</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Écran : déverrouiller l’agenda (phrase secrète) -->
+<section class="screen center" id="screen-unlock" hidden>
+  <div class="narrow">
+    <div class="logo-block">
+      <div class="logo-bow">🎀</div>
+      <h1 class="logo">Pink Date <span class="h">♡</span></h1>
+      <p class="tagline">Notre petit monde. Tous nos moments, au même endroit.</p>
+    </div>
+    <div class="card">
+      <h3>🔐 Ouvrir notre agenda</h3>
+      <form data-form="unlock" novalidate>
+        <label class="field"><span>Ton prénom</span><input name="name" required maxlength="40" autocomplete="given-name"></label>
+        <label class="field"><span>Phrase secrète de l’agenda</span><input type="password" name="pass" required autocomplete="current-password"></label>
+        <button type="submit" class="btn primary block"><span>Ouvrir l’agenda</span></button>
+      </form>
+      <p class="form-msg" id="unlock-msg" hidden></p>
+      <p class="hint" style="margin-top:12px">La phrase secrète t’a été donnée par la personne qui a créé l’agenda. Elle n’est jamais envoyée sur internet : elle sert à déchiffrer les rendez-vous sur ton téléphone.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Écran : créer l’agenda (bin encore vide) -->
+<section class="screen center" id="screen-create" hidden>
+  <div class="narrow">
+    <div class="logo-block">
+      <div class="logo-bow">🎀</div>
+      <h1 class="logo">Bienvenue <span class="h">♡</span></h1>
+      <p class="tagline">Créons votre agenda partagé.</p>
+    </div>
+    <div class="card">
+      <h3>✨ Créer notre agenda</h3>
+      <form data-form="create" novalidate>
+        <label class="field"><span>Nom de l’agenda</span><input name="agenda" required maxlength="60" placeholder="Notre agenda ♡"></label>
+        <label class="field"><span>Ton prénom</span><input name="name" required maxlength="40" autocomplete="given-name"></label>
+        <label class="field"><span>Phrase secrète (10 caractères minimum)</span><input type="password" name="pass" required minlength="10" autocomplete="new-password"></label>
+        <label class="field"><span>Confirme la phrase secrète</span><input type="password" name="pass2" required minlength="10" autocomplete="new-password"></label>
+        <p class="hint">Exemple de bonne phrase : quatre mots qui n’ont rien à voir, comme « nuage-violon-pastèque-lundi ». Note-la bien : sans elle, personne ne peut relire l’agenda, pas même toi.</p>
+        <button type="submit" class="btn primary block"><span>Créer l’agenda</span></button>
+      </form>
+      <p class="form-msg" id="create-msg" hidden></p>
+    </div>
+  </div>
+</section>
+
+<!-- Écran : application -->
+<section class="screen" id="screen-app" hidden>
+  <header class="topbar">
+    <div>
+      <div class="brand">Pink Date <span class="h">♡</span></div>
+      <div class="space-name" id="space-name"></div>
+    </div>
+    <div class="sync connecting" id="sync" role="status" aria-live="polite"><i></i><span>Connexion…</span></div>
+  </header>
+
+  <main class="main">
+    <div class="view" id="view-home"></div>
+    <div class="view" id="view-calendar" hidden></div>
+    <div class="view" id="view-list" hidden></div>
+    <div class="view" id="view-settings" hidden></div>
+  </main>
+
+  <nav class="tabbar" aria-label="Navigation principale">
+    <button type="button" class="tab active" data-action="nav" data-view="home"><i data-icon="home"></i><span>Accueil</span></button>
+    <button type="button" class="tab" data-action="nav" data-view="calendar"><i data-icon="calendar"></i><span>Calendrier</span></button>
+    <button type="button" class="tab-add" id="fab" data-action="add-event" aria-label="Ajouter un rendez-vous"><i data-icon="plus" data-size="28"></i></button>
+    <button type="button" class="tab" data-action="nav" data-view="list"><i data-icon="list"></i><span>Rendez-vous</span></button>
+    <button type="button" class="tab" data-action="nav" data-view="settings"><i data-icon="settings"></i><span>Paramètres</span></button>
+  </nav>
+</section>
+
+<div class="modal-root" id="modal" hidden>
+  <div class="modal-backdrop" data-action="modal-backdrop"></div>
+  <div class="modal-sheet" role="dialog" aria-modal="true"><div id="modal-body"></div></div>
+</div>
+<div class="modal-root confirm" id="confirm" hidden>
+  <div class="modal-backdrop" data-action="confirm-no"></div>
+  <div class="modal-sheet" role="alertdialog" aria-modal="true"><div id="confirm-body"></div></div>
+</div>
+<div id="toasts" aria-live="polite"></div>
+
+<!-- Guide d’installation intégré -->
+<template id="guide-tpl">
+<div class="guide">
+  <section class="card">
+    <h3>1. Créer la base partagée (JSONBin)</h3>
+    <ol class="tips">
+      <li>Crée un compte gratuit sur <b>jsonbin.io</b>.</li>
+      <li>Crée un nouveau <b>Bin</b>, remplace son contenu par <code>{"init": true}</code>, enregistre-le (garde-le privé).</li>
+      <li>Copie l’<b>ID du bin</b> (la longue suite de caractères affichée avec le bin).</li>
+    </ol>
+  </section>
+  <section class="card">
+    <h3>2. Créer une clé limitée</h3>
+    <ol class="tips">
+      <li>Dans JSONBin, va dans <b>API Keys</b>, puis <b>Access Keys</b>.</li>
+      <li>Crée une clé qui n’a que les droits <b>Read</b> et <b>Update</b> sur les bins (pas Create, pas Delete).</li>
+      <li>Copie cette clé. N’utilise la <b>Master Key</b> qu’en dernier recours : elle donne tous les droits sur ton compte JSONBin.</li>
+    </ol>
+  </section>
+  <section class="card">
+    <h3>3. Relier l’application</h3>
+    <ol class="tips">
+      <li>Ouvre <b>index.html</b> dans un éditeur de texte et cherche <code>CONFIGURATION</code>.</li>
+      <li>Colle l’ID du bin dans <code>BIN_ID</code> et la clé dans <code>API_KEY</code>. Laisse <code>KEY_TYPE: 'access'</code> (mets <code>'master'</code> seulement si tu utilises la Master Key).</li>
+      <li>Remplace <b>index.html</b> sur GitHub (dépôt, fichier, icône crayon ou nouvel envoi), puis valide.</li>
+    </ol>
+  </section>
+  <section class="card">
+    <h3>4. Créer l’agenda et le partager</h3>
+    <ol class="tips">
+      <li>Ouvre ton lien GitHub Pages : l’écran « Créer notre agenda » apparaît.</li>
+      <li>Choisis un nom, ton prénom et une <b>phrase secrète</b>.</li>
+      <li>Envoie le lien à ta copine, et donne-lui la phrase secrète <b>de vive voix</b> ou par un autre canal que le lien.</li>
+      <li>Elle ouvre le lien, saisit son prénom et la phrase : vous partagez le même agenda.</li>
+    </ol>
+  </section>
+  <section class="card">
+    <h3>Ce qu’il faut savoir</h3>
+    <ul class="tips">
+      <li><b>Confidentialité</b> : les rendez-vous sont chiffrés sur ton téléphone avant d’être envoyés. Sans la phrase secrète, le contenu du bin est illisible, même pour quelqu’un qui lit le code de la page.</li>
+      <li><b>Limite</b> : la clé JSONBin est visible dans le code. Quelqu’un de malveillant pourrait donc écraser le bin (sans pouvoir le lire). Exporte une sauvegarde JSON de temps en temps.</li>
+      <li><b>Synchronisation</b> : l’app vérifie les changements toutes les quelques secondes quand elle est ouverte. Le plan gratuit de JSONBin limite le nombre de requêtes : vérifie ton quota sur ton compte.</li>
+      <li><b>Phrase secrète perdue</b> : l’agenda ne peut plus être déchiffré. Garde-la dans un endroit sûr, avec une sauvegarde JSON.</li>
+    </ul>
+  </section>
+</div>
+</template>
+
+<script>
+'use strict';
+
+/* =====================================================================
+   CONFIGURATION
+   Colle ici l’ID de ton bin JSONBin et ta clé d’accès.
+   Conseil : utilise une Access Key limitée à Read + Update sur les bins.
+   ===================================================================== */
+const CONFIG = {
+  BIN_ID: 'COLLE-ICI-L-ID-DU-BIN',
+  API_KEY: 'COLLE-ICI-TA-CLE',
+  KEY_TYPE: 'access',   // 'access' (X-Access-Key, recommandé) ou 'master' (X-Master-Key)
+  POLL_SECONDS: 6,      // vérification des changements de l’autre personne
+};
+
+const CATEGORIES = {
+  date:     { emoji: '💕', short: 'Date en amoureux',  bg: '#FFD6E7', dot: '#F45B9A' },
+  sortie:   { emoji: '🍿', short: 'Cinéma et sorties', bg: '#E8DFFF', dot: '#8E6CF0' },
+  resto:    { emoji: '🍽️', short: 'Restaurant',        bg: '#FFE5D4', dot: '#EE8648' },
+  anniv:    { emoji: '🎂', short: 'Anniversaire',      bg: '#FFF1C4', dot: '#D9A10A' },
+  voyage:   { emoji: '✈️', short: 'Voyage',            bg: '#D8F0FF', dot: '#3A97D6' },
+  ensemble: { emoji: '🏠', short: 'Temps ensemble',    bg: '#DCF4E5', dot: '#3AA86E' },
+  travail:  { emoji: '💼', short: 'Travail et études', bg: '#E6E8F0', dot: '#5F6B85' },
+  autre:    { emoji: '🩷', short: 'Autre',             bg: '#FBE2F0', dot: '#D45C9A' },
+};
+
+const QUOTES = [
+  'Les petits moments font les grands souvenirs.',
+  'Chaque jour ensemble mérite une petite place ici.',
+  'On a tout notre temps, mais pas une minute à perdre.',
+  'Collectionnons les jolis moments.',
+  'Le meilleur rendez-vous, c’est le prochain.',
+];
+
+// Préférences locales à cet appareil (les rendez-vous, eux, sont dans JSONBin)
+const LS = { name: 'pinkdate.name', pass: 'pinkdate.pass', device: 'pinkdate.device' };
+
+const state = {
+  doc: null, key: null, saltB64: null, passphrase: null, needsPush: false, pollTimer: null,
+  screen: 'loading', view: 'home', calMode: 'month', cursor: new Date(), selectedDay: null,
+  listScope: 'upcoming', listFilter: 'all', search: '', modalLocked: false, confirmResolve: null,
+};
+
+/* =====================================================================
+   UTILITAIRES
+   ===================================================================== */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const pad = n => String(n).padStart(2, '0');
+const dateKey = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+const parseKey = k => { const [y, m, d] = k.split('-').map(Number); return new Date(y, m - 1, d); };
+const todayKey = () => dateKey(new Date());
+const addDays = (d, n) => { const x = new Date(d.getFullYear(), d.getMonth(), d.getDate()); x.setDate(x.getDate() + n); return x; };
+const startOfWeek = d => addDays(d, -((d.getDay() + 6) % 7));
+const hm = t => (t ? String(t).slice(0, 5) : '');
+const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+const fmt = (d, o) => new Intl.DateTimeFormat('fr-FR', o).format(d);
+const fmtLong = k => cap(fmt(parseKey(k), { weekday: 'long', day: 'numeric', month: 'long' }));
+const fmtFull = k => cap(fmt(parseKey(k), { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }));
+const fmtDateTime = iso => fmt(new Date(iso), { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+const daysBetween = (a, b) => Math.round((parseKey(b) - parseKey(a)) / 86400000);
+const appUrl = () => location.origin + location.pathname;
+const nowIso = () => new Date().toISOString();
+const cat = e => CATEGORIES[e.category] || CATEGORIES.autre;
+const lsGet = k => { try { return localStorage.getItem(k); } catch { return null; } };
+const lsSet = (k, v) => { try { localStorage.setItem(k, v); } catch { /* navigation privée */ } };
+const lsDel = k => { try { localStorage.removeItem(k); } catch { /* ignore */ } };
+function uuid() {
+  if (crypto.randomUUID) return crypto.randomUUID();
+  return [...crypto.getRandomValues(new Uint8Array(16))].map(b => b.toString(16).padStart(2, '0')).join('');
+}
+function deviceId() {
+  let id = lsGet(LS.device);
+  if (!id) { id = uuid(); lsSet(LS.device, id); }
+  return id;
+}
+const myName = () => lsGet(LS.name) || '';
+
+const ICONS = {
+  home: '<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/>',
+  calendar: '<rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/>',
+  list: '<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>',
+  settings: '<path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>',
+  chevL: '<path d="m15 18-6-6 6-6"/>',
+  chevR: '<path d="m9 18 6-6-6-6"/>',
+  clock: '<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
+  pin: '<path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>',
+  user: '<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
+  x: '<path d="M18 6 6 18M6 6l12 12"/>',
+  trash: '<path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>',
+  edit: '<path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/>',
+  copy: '<rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>',
+  share: '<path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8M16 6l-4-4-4 4M12 2v13"/>',
+  download: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>',
+  upload: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>',
+  key: '<circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6M15.5 7.5l3 3L22 7l-3-3"/>',
+  lock: '<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+  search: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+  text: '<path d="M17 6H3M21 12H3M15 18H3"/>',
+};
+const icon = (name, size = 20) =>
+  `<svg viewBox="0 0 24 24" width="${size}" height="${size}" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name] || ''}</svg>`;
+
+/* =====================================================================
+   GESTION DES ERREURS ET NOTIFICATIONS
+   ===================================================================== */
+class UserError extends Error {}
+class WrongPassError extends Error {}
+class ApiError extends Error { constructor(status, message) { super(message); this.status = status; } }
+
+function friendlyError(err) {
+  if (err instanceof UserError) return err.message;
+  if (err instanceof WrongPassError) return 'Phrase secrète incorrecte.';
+  if (err instanceof ApiError) {
+    const m = err.message || '';
+    if (err.status === 0) return navigator.onLine ? 'Impossible de joindre JSONBin. Réessaie dans un instant.' : 'Pas de connexion internet.';
+    if (err.status === 401) return 'Clé JSONBin refusée : vérifie API_KEY et KEY_TYPE dans la configuration.';
+    if (err.status === 404) return 'Bin introuvable : vérifie BIN_ID dans la configuration.';
+    if (err.status === 413 || /size|large|limit.*kb/i.test(m)) return 'L’agenda est devenu trop volumineux pour l’offre gratuite JSONBin. Exporte une sauvegarde puis supprime d’anciens rendez-vous.';
+    if (err.status === 429 || /request.*limit|quota|exceeded/i.test(m)) return 'Limite de requêtes JSONBin atteinte. Réessaie plus tard ou vérifie ton quota.';
+    if (err.status === 403) return `Accès refusé par JSONBin${m ? ` (${m})` : ''}. Vérifie les droits de la clé (Read + Update).`;
+    return `Erreur JSONBin${m ? ` : ${m}` : ''}.`;
+  }
+  const msg = (err && err.message) || String(err || '');
+  return msg ? `Une erreur est survenue : ${msg}` : 'Une erreur inattendue est survenue.';
+}
+
+function toast(message, type = 'ok', ms) {
+  const el = document.createElement('div');
+  el.className = `toast ${type}`;
+  el.textContent = message;
+  $('#toasts').append(el);
+  setTimeout(() => { el.classList.add('out'); setTimeout(() => el.remove(), 320); }, ms || (type === 'error' ? 5000 : 2600));
+}
+
+async function busy(btn, fn) {
+  if (btn && btn.disabled) return;
+  if (btn) { btn.disabled = true; btn.classList.add('loading'); }
+  try { return await fn(); }
+  catch (err) { console.error(err); toast(friendlyError(err), 'error'); }
+  finally { if (btn) { btn.disabled = false; btn.classList.remove('loading'); } }
+}
+
+const sync = { status: 'connecting', saving: 0 };
+function setSync(status) {
+  if (status) sync.status = status;
+  const el = $('#sync');
+  if (!el) return;
+  let cls = sync.status, txt;
+  if (sync.saving > 0) { cls = 'saving'; txt = 'Enregistrement…'; }
+  else if (state.needsPush) { cls = 'pending'; txt = 'Pas encore envoyé'; }
+  else if (sync.status === 'live') txt = 'Synchronisé';
+  else if (sync.status === 'offline') txt = 'Hors ligne';
+  else txt = 'Connexion…';
+  el.className = `sync ${cls}`;
+  el.querySelector('span').textContent = txt;
+}
+
+function formMsg(id, text, type = 'error') {
+  const el = $(id);
+  el.hidden = !text;
+  el.textContent = text || '';
+  el.className = `form-msg ${type}`;
+}
+
+/* =====================================================================
+   ÉCRANS ET MODALES
+   ===================================================================== */
+function showScreen(name) {
+  $$('.screen').forEach(s => { s.hidden = s.id !== `screen-${name}`; });
+  state.screen = name;
+  window.scrollTo(0, 0);
+}
+function showFatal(message) {
+  showScreen('loading');
+  $('#loading-text').textContent = message;
+  $('#loading-actions').hidden = false;
+  $('.heart-beat').style.animation = 'none';
+}
+function openModal(html, opts = {}) {
+  state.modalLocked = !!opts.locked;
+  $('#modal-body').innerHTML = html;
+  const root = $('#modal');
+  const wasHidden = root.hidden;
+  root.hidden = false;
+  document.body.style.overflow = 'hidden';
+  if (wasHidden) requestAnimationFrame(() => root.classList.add('open'));
+  $('.modal-sheet', root).scrollTop = 0;
+  const first = $('#modal-body input:not([type=hidden]):not([type=radio]):not([type=checkbox])');
+  if (first && opts.focus && window.matchMedia('(min-width: 640px)').matches) first.focus();
+}
+function closeModal() {
+  const root = $('#modal');
+  if (root.hidden) return;
+  state.modalLocked = false;
+  root.classList.remove('open');
+  document.body.style.overflow = '';
+  setTimeout(() => { if (!root.classList.contains('open')) { root.hidden = true; $('#modal-body').innerHTML = ''; } }, 220);
+}
+function confirmDialog({ title, text, ok = 'Confirmer', danger = true }) {
+  return new Promise(resolve => {
+    state.confirmResolve = resolve;
+    $('#confirm-body').innerHTML = `
+      <div class="confirm-icon">${danger ? '🥺' : '💗'}</div>
+      <h3>${esc(title)}</h3>
+      <p>${esc(text)}</p>
+      <div class="row-btns">
+        <button type="button" class="btn ghost" data-action="confirm-no">Annuler</button>
+        <button type="button" class="btn ${danger ? 'danger' : 'primary'}" data-action="confirm-yes">${esc(ok)}</button>
+      </div>`;
+    const root = $('#confirm');
+    root.hidden = false;
+    requestAnimationFrame(() => root.classList.add('open'));
+  });
+}
+function closeConfirm(value) {
+  const root = $('#confirm');
+  root.classList.remove('open');
+  setTimeout(() => { if (!root.classList.contains('open')) root.hidden = true; }, 200);
+  const r = state.confirmResolve;
+  state.confirmResolve = null;
+  if (r) r(value);
+}
+async function copyText(text, message = 'Copié') {
+  try { await navigator.clipboard.writeText(text); toast(message); }
+  catch {
+    const ta = document.createElement('textarea');
+    ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.append(ta); ta.select();
+    try { document.execCommand('copy'); toast(message); } catch { toast('Copie impossible : sélectionne le texte à la main.', 'error'); }
+    ta.remove();
+  }
+}
+function download(filename, content, type) {
+  const blob = new Blob([content], { type: `${type};charset=utf-8` });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 3000);
+}
+function openGuide() {
+  openModal(`<div class="modal-head"><h2>Guide d’installation</h2>
+    <button type="button" class="icon-btn" data-action="modal-close" aria-label="Fermer">${icon('x')}</button></div>${$('#guide-tpl').innerHTML}`);
+}
+
+/* =====================================================================
+   CHIFFREMENT (AES-GCM, clé dérivée de la phrase secrète)
+   Les rendez-vous sont chiffrés sur l’appareil avant d’aller dans JSONBin.
+   ===================================================================== */
+const enc = new TextEncoder();
+const dec = new TextDecoder();
+const canZip = 'CompressionStream' in window && 'DecompressionStream' in window;
+
+function b64(buf) {
+  const bytes = buf instanceof Uint8Array ? buf : new Uint8Array(buf);
+  let s = '';
+  for (let i = 0; i < bytes.length; i += 0x8000) s += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+  return btoa(s);
+}
+const unb64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+
+async function zipBytes(bytes, decompress) {
+  const stream = new Blob([bytes]).stream().pipeThrough(decompress ? new DecompressionStream('gzip') : new CompressionStream('gzip'));
+  return new Uint8Array(await new Response(stream).arrayBuffer());
+}
+
+async function deriveKey(pass, salt) {
+  const base = await crypto.subtle.importKey('raw', enc.encode(pass), 'PBKDF2', false, ['deriveKey']);
+  return crypto.subtle.deriveKey(
+    { name: 'PBKDF2', salt, iterations: 250000, hash: 'SHA-256' },
+    base, { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt']);
+}
+
+const isEncrypted = r => !!(r && r.app === 'pink-date' && r.iv && r.data && r.salt);
+
+function normalizeDoc(d) {
+  d = d && typeof d === 'object' ? d : {};
+  return {
+    meta: { name: (d.meta && d.meta.name) || 'Notre agenda', name_updated_at: (d.meta && d.meta.name_updated_at) || '' },
+    events: d.events && typeof d.events === 'object' ? d.events : {},
+  };
+}
+
+async function decryptRecord(rec) {
+  let bytes;
+  try {
+    bytes = new Uint8Array(await crypto.subtle.decrypt({ name: 'AES-GCM', iv: unb64(rec.iv) }, state.key, unb64(rec.data)));
+  } catch { throw new WrongPassError(); }
+  if (rec.z) {
+    if (!canZip) throw new UserError('Ce navigateur est trop ancien pour lire l’agenda. Mets-le à jour.');
+    bytes = await zipBytes(bytes, true);
+  }
+  return normalizeDoc(JSON.parse(dec.decode(bytes)));
+}
+
+async function encryptDoc(doc) {
+  // On oublie les suppressions de plus de 60 jours pour garder le bin léger
+  const limit = new Date(Date.now() - 60 * 86400000).toISOString();
+  const events = {};
+  for (const [id, e] of Object.entries(doc.events)) if (!(e.deleted && e.updated_at < limit)) events[id] = e;
+  let bytes = enc.encode(JSON.stringify({ meta: doc.meta, events }));
+  if (canZip) bytes = await zipBytes(bytes, false);
+  const iv = crypto.getRandomValues(new Uint8Array(12));
+  const ct = await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, state.key, bytes);
+  return { app: 'pink-date', v: 1, z: canZip ? 1 : 0, salt: state.saltB64, iv: b64(iv), data: b64(ct), saved_at: nowIso() };
+}
+
+/* =====================================================================
+   BASE PARTAGÉE JSONBIN
+   ===================================================================== */
+const API = () => `https://api.jsonbin.io/v3/b/${encodeURIComponent(CONFIG.BIN_ID)}`;
+function apiHeaders(json) {
+  const h = { [CONFIG.KEY_TYPE === 'master' ? 'X-Master-Key' : 'X-Access-Key']: CONFIG.API_KEY };
+  if (json) h['Content-Type'] = 'application/json';
+  return h;
+}
+async function apiCall(url, options) {
+  let res;
+  try { res = await fetch(url, { cache: 'no-store', ...options }); }
+  catch { throw new ApiError(0, 'network'); }
+  const body = await res.json().catch(() => ({}));
+  if (!res.ok) throw new ApiError(res.status, body.message || '');
+  return body;
+}
+const apiGet = async () => (await apiCall(`${API()}/latest`, { headers: apiHeaders(false) })).record;
+const apiPut = record => apiCall(API(), { method: 'PUT', headers: apiHeaders(true), body: JSON.stringify(record) });
+
+/* =====================================================================
+   SYNCHRONISATION
+   Chaque appareil garde une copie en mémoire. Avant chaque envoi, on relit
+   la version en ligne et on fusionne rendez-vous par rendez-vous (la
+   modification la plus récente gagne), pour ne pas écraser l’autre personne.
+   ===================================================================== */
+function mergeDocs(remote, local) {
+  const out = { meta: { ...remote.meta }, events: { ...remote.events } };
+  if ((local.meta.name_updated_at || '') > (remote.meta.name_updated_at || '')) out.meta = { ...local.meta };
+  for (const [id, e] of Object.entries(local.events)) {
+    const r = out.events[id];
+    if (!r || (e.updated_at || '') > (r.updated_at || '')) out.events[id] = e;
+  }
+  return out;
+}
+const docSig = d => JSON.stringify([d.meta, Object.keys(d.events).sort().map(k => d.events[k])]);
+
+let chain = Promise.resolve();
+function queue(fn) {
+  const p = chain.then(fn, fn);
+  chain = p.catch(() => {});
+  return p;
+}
+
+async function pull() {
+  const rec = await apiGet();
+  if (!isEncrypted(rec)) throw new UserError('L’agenda en ligne a été effacé ou réinitialisé. Restaure une sauvegarde JSON si besoin.');
+  if (rec.salt !== state.saltB64 || !state.key) {
+    state.key = await deriveKey(state.passphrase, unb64(rec.salt));
+    state.saltB64 = rec.salt;
+  }
+  return decryptRecord(rec);
+}
+
+function push() {
+  return queue(async () => {
+    if (!state.needsPush) return;
+    sync.saving++; setSync();
+    try {
+      const remote = await pull();
+      const merged = mergeDocs(remote, state.doc);
+      state.needsPush = false;
+      try { await apiPut(await encryptDoc(merged)); }
+      catch (e) { state.needsPush = true; throw e; }
+      state.doc = mergeDocs(merged, state.doc);
+      setSync('live');
+      renderAll();
+    } catch (e) {
+      handleSyncError(e);
+      throw e;
+    } finally { sync.saving--; setSync(); }
+  });
+}
+
+async function poll() {
+  if (state.screen !== 'app' || document.visibilityState !== 'visible') return;
+  if (state.needsPush) { await push().catch(() => {}); return; }
+  await queue(async () => {
+    try {
+      const remote = await pull();
+      const merged = mergeDocs(remote, state.doc);
+      const changed = docSig(merged) !== docSig(state.doc);
+      state.doc = merged;
+      setSync('live');
+      if (changed) { renderAll(); renderHeader(); }
+    } catch (e) { handleSyncError(e); }
+  });
+}
+
+function schedulePoll() {
+  clearTimeout(state.pollTimer);
+  state.pollTimer = setTimeout(async () => { await poll(); schedulePoll(); }, Math.max(3, CONFIG.POLL_SECONDS) * 1000);
+}
+
+function handleSyncError(e) {
+  console.warn(e);
+  if (e instanceof WrongPassError) {
+    lock('La phrase secrète a été changée sur un autre appareil : saisis la nouvelle.');
+    return;
+  }
+  setSync('offline');
+}
+
+/** Applique un changement local puis l’envoie. */
+async function commit(mutator, okMessage) {
+  mutator(state.doc);
+  state.needsPush = true;
+  renderAll(); renderHeader(); setSync();
+  try {
+    await push();
+    if (okMessage) toast(okMessage);
+  } catch (err) {
+    toast(`${friendlyError(err)} Le changement est gardé sur cet appareil et sera renvoyé automatiquement.`, 'error', 6000);
+  }
+}
+
+function lock(message) {
+  clearTimeout(state.pollTimer);
+  lsDel(LS.pass);
+  Object.assign(state, { key: null, passphrase: null, doc: null, needsPush: false });
+  closeModal();
+  $('[name=name]', $('#screen-unlock')).value = myName();
+  showScreen('unlock');
+  formMsg('#unlock-msg', message || '', 'error');
+}
+
+function enterApp() {
+  state.selectedDay = todayKey();
+  state.cursor = new Date();
+  $('#view-list').dataset.ready = '';
+  showScreen('app');
+  renderHeader();
+  setView('home');
+  setSync('live');
+  schedulePoll();
+}
+
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') poll(); });
+window.addEventListener('online', () => poll());
+window.addEventListener('offline', () => setSync('offline'));
+window.addEventListener('beforeunload', e => { if (state.needsPush) { e.preventDefault(); e.returnValue = ''; } });
+
+/* =====================================================================
+   GESTION DES ÉVÉNEMENTS
+   ===================================================================== */
+const liveEvents = () => (state.doc ? Object.values(state.doc.events).filter(e => !e.deleted && e.title) : []);
+
+function authorLabel(e) {
+  if (e.created_by_device && e.created_by_device === deviceId()) return 'Ajouté par moi';
+  return e.created_by_name ? `Ajouté par ${e.created_by_name}` : 'Ajouté par quelqu’un';
+}
+function timeLabel(e) {
+  if (e.all_day) return 'Toute la journée';
+  return e.end_time ? `${hm(e.start_time)} – ${hm(e.end_time)}` : hm(e.start_time);
+}
+function compareEvents(a, b) {
+  if (a.event_date !== b.event_date) return a.event_date < b.event_date ? -1 : 1;
+  if (!!a.all_day !== !!b.all_day) return a.all_day ? -1 : 1;
+  const ta = hm(a.start_time), tb = hm(b.start_time);
+  if (ta !== tb) return ta < tb ? -1 : 1;
+  return a.title.localeCompare(b.title, 'fr');
+}
+const sortedEvents = () => liveEvents().sort(compareEvents);
+function eventsByDay() {
+  const by = {};
+  for (const e of sortedEvents()) (by[e.event_date] = by[e.event_date] || []).push(e);
+  return by;
+}
+
+function openEditor(ev, presetDate) {
+  const e = ev || {
+    title: '', event_date: presetDate || todayKey(), all_day: false, start_time: '19:00', end_time: '',
+    location: '', description: '', category: 'date',
+  };
+  openModal(`
+    <div class="modal-head"><h2>${ev ? 'Modifier le rendez-vous' : 'Nouveau rendez-vous ♡'}</h2>
+      <button type="button" class="icon-btn" data-action="modal-close" aria-label="Fermer">${icon('x')}</button></div>
+    <form id="form-event" data-form="event" novalidate>
+      <input type="hidden" name="id" value="${esc(ev ? ev.id : '')}">
+      <label class="field"><span>Titre</span><input name="title" maxlength="120" required value="${esc(e.title)}" placeholder="Dîner aux chandelles, ciné…"></label>
+      <div class="field"><span>Catégorie</span>
+        <div class="cat-picker" role="radiogroup" aria-label="Catégorie">
+          ${Object.entries(CATEGORIES).map(([k, c]) => `
+            <label class="cat-opt" style="--c:${c.bg};--d:${c.dot}">
+              <input type="radio" name="category" value="${k}" ${e.category === k ? 'checked' : ''}>
+              <span>${c.emoji} ${esc(c.short)}</span>
+            </label>`).join('')}
+        </div>
+      </div>
+      <label class="field"><span>Date</span><input type="date" name="event_date" required value="${esc(e.event_date)}"></label>
+      <label class="switch"><input type="checkbox" name="all_day" ${e.all_day ? 'checked' : ''}><span class="track"></span><span>Toute la journée</span></label>
+      <div class="grid2 times" ${e.all_day ? 'hidden' : ''}>
+        <label class="field"><span>Début</span><input type="time" name="start_time" value="${esc(hm(e.start_time))}"></label>
+        <label class="field"><span>Fin (facultatif)</span><input type="time" name="end_time" value="${esc(hm(e.end_time))}"></label>
+      </div>
+      <label class="field"><span>Lieu (facultatif)</span><input name="location" maxlength="200" value="${esc(e.location || '')}" autocomplete="off"></label>
+      <label class="field"><span>Description (facultatif)</span><textarea name="description" maxlength="2000" rows="3">${esc(e.description || '')}</textarea></label>
+      ${ev ? `<p class="meta">${esc(authorLabel(ev))}, le ${esc(fmtDateTime(ev.created_at))}</p>` : ''}
+      <p class="form-error" hidden></p>
+      <div class="row-btns">
+        ${ev ? `<button type="button" class="btn danger-ghost square" data-action="event-delete" data-id="${esc(ev.id)}" aria-label="Supprimer">${icon('trash', 18)}</button>` : ''}
+        <button type="button" class="btn ghost" data-action="modal-close">Annuler</button>
+        <button type="submit" class="btn primary"><span>Enregistrer</span></button>
+      </div>
+    </form>`, { focus: !ev });
+}
+
+function openEvent(id) {
+  const e = state.doc && state.doc.events[id];
+  if (!e || e.deleted) { toast('Ce rendez-vous n’existe plus.', 'error'); return; }
+  const c = cat(e);
+  openModal(`
+    <div class="modal-head">
+      <span class="badge-cat" style="--c:${c.bg}">${c.emoji} ${esc(c.short)}</span>
+      <button type="button" class="icon-btn" data-action="modal-close" aria-label="Fermer">${icon('x')}</button>
+    </div>
+    <h2 class="detail-title">${esc(e.title)}</h2>
+    <div class="detail-row">${icon('calendar', 18)}<div>${esc(fmtFull(e.event_date))}</div></div>
+    <div class="detail-row">${icon('clock', 18)}<div>${esc(timeLabel(e))}</div></div>
+    ${e.location ? `<div class="detail-row">${icon('pin', 18)}<div>${esc(e.location)}</div></div>` : ''}
+    ${e.description ? `<div class="detail-row">${icon('text', 18)}<div class="detail-desc">${esc(e.description)}</div></div>` : ''}
+    <div class="detail-row">${icon('user', 18)}<div>${esc(authorLabel(e))}<br><small class="muted">le ${esc(fmtDateTime(e.created_at))}</small></div></div>
+    <div class="row-btns">
+      <button type="button" class="btn danger-ghost square" data-action="event-delete" data-id="${esc(e.id)}" aria-label="Supprimer">${icon('trash', 18)}</button>
+      <button type="button" class="btn primary" data-action="event-edit" data-id="${esc(e.id)}">${icon('edit', 18)}<span>Modifier</span></button>
+    </div>`);
+}
+
+async function submitEvent(form) {
+  const fd = new FormData(form);
+  const errEl = $('.form-error', form);
+  const v = {
+    title: String(fd.get('title') || '').trim(),
+    event_date: fd.get('event_date') || '',
+    all_day: !!fd.get('all_day'),
+    start_time: fd.get('start_time') || null,
+    end_time: fd.get('end_time') || null,
+    location: String(fd.get('location') || '').trim() || null,
+    description: String(fd.get('description') || '').trim() || null,
+    category: fd.get('category') || 'autre',
+  };
+  const errors = [];
+  if (!v.title) errors.push('Ajoute un titre.');
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(v.event_date)) errors.push('Choisis une date.');
+  if (v.all_day) { v.start_time = null; v.end_time = null; }
+  else {
+    if (!v.start_time) errors.push('Indique l’heure de début, ou coche « Toute la journée ».');
+    if (v.start_time && v.end_time && v.end_time < v.start_time) errors.push('L’heure de fin doit être après l’heure de début.');
+  }
+  if (!CATEGORIES[v.category]) v.category = 'autre';
+  if (errors.length) { errEl.textContent = errors.join(' '); errEl.hidden = false; return; }
+
+  const id = fd.get('id');
+  const now = nowIso();
+  closeModal();
+  await commit(doc => {
+    if (id && doc.events[id] && !doc.events[id].deleted) {
+      doc.events[id] = { ...doc.events[id], ...v, updated_at: now, updated_by_name: myName() };
+    } else {
+      const nid = uuid();
+      doc.events[nid] = {
+        id: nid, ...v, created_by_name: myName(), created_by_device: deviceId(),
+        created_at: now, updated_at: now, updated_by_name: myName(),
+      };
+    }
+  }, id ? 'Modifications enregistrées' : 'Rendez-vous ajouté');
+}
+
+async function deleteEvent(id) {
+  const ev = state.doc.events[id];
+  if (!ev) return;
+  const ok = await confirmDialog({
+    title: 'Supprimer ce rendez-vous ?',
+    text: `« ${ev.title} » sera supprimé pour tout le monde.`,
+    ok: 'Supprimer',
+  });
+  if (!ok) return;
+  closeModal();
+  await commit(doc => { doc.events[id] = { id, deleted: true, updated_at: nowIso() }; }, 'Rendez-vous supprimé');
+}
+
+/* ---------- Export / import ---------- */
+function slug(s) {
+  return String(s).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'agenda';
+}
+function exportJSON() {
+  const data = {
+    app: 'Pink Date', format: 1, exported_at: nowIso(), space: { name: state.doc.meta.name },
+    events: sortedEvents().map(e => ({
+      id: e.id, title: e.title, event_date: e.event_date, all_day: !!e.all_day, start_time: e.start_time || null,
+      end_time: e.end_time || null, location: e.location || null, description: e.description || null,
+      category: e.category, created_by_name: e.created_by_name || null, created_at: e.created_at, updated_at: e.updated_at,
+    })),
+  };
+  download(`pink-date-${slug(state.doc.meta.name)}-${todayKey()}.json`, JSON.stringify(data, null, 2), 'application/json');
+  toast(`${data.events.length} rendez-vous exportés`);
+}
+const icsEscape = s => String(s || '').replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
+function icsFold(line) {
+  const chars = Array.from(line);
+  if (chars.length <= 72) return line;
+  const out = [];
+  for (let i = 0; i < chars.length; i += 70) out.push((i ? ' ' : '') + chars.slice(i, i + 70).join(''));
+  return out.join('\r\n');
+}
+function exportICS() {
+  const stamp = nowIso().replace(/[-:]/g, '').replace(/\.\d+/, '');
+  const lines = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Pink Date//FR', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
+    `X-WR-CALNAME:${icsEscape(state.doc.meta.name)}`];
+  for (const e of sortedEvents()) {
+    const c = cat(e);
+    const d = e.event_date.replace(/-/g, '');
+    lines.push('BEGIN:VEVENT', `UID:${e.id}@pink-date`, `DTSTAMP:${stamp}`);
+    if (e.all_day) {
+      lines.push(`DTSTART;VALUE=DATE:${d}`, `DTEND;VALUE=DATE:${dateKey(addDays(parseKey(e.event_date), 1)).replace(/-/g, '')}`);
+    } else {
+      const st = hm(e.start_time).replace(':', '');
+      let en;
+      if (e.end_time) en = hm(e.end_time).replace(':', '');
+      else { const [h, mi] = hm(e.start_time).split(':').map(Number); en = h >= 23 ? '2359' : `${pad(h + 1)}${pad(mi)}`; }
+      lines.push(`DTSTART:${d}T${st}00`, `DTEND:${d}T${en}00`);
+    }
+    lines.push(`SUMMARY:${icsEscape(`${c.emoji} ${e.title}`)}`);
+    if (e.location) lines.push(`LOCATION:${icsEscape(e.location)}`);
+    lines.push(`DESCRIPTION:${icsEscape([e.description, `${c.short}. ${authorLabel(e)}.`].filter(Boolean).join('\n\n'))}`,
+      `CATEGORIES:${icsEscape(c.short)}`, 'END:VEVENT');
+  }
+  lines.push('END:VCALENDAR');
+  download(`pink-date-${slug(state.doc.meta.name)}.ics`, lines.map(icsFold).join('\r\n') + '\r\n', 'text/calendar');
+  toast('Fichier calendrier exporté');
+}
+function normalizeImported(e) {
+  if (!e || typeof e !== 'object') return null;
+  const title = String(e.title || '').trim().slice(0, 120);
+  const date = String(e.event_date || '');
+  if (!title || !/^\d{4}-\d{2}-\d{2}$/.test(date)) return null;
+  const t = x => (/^\d{2}:\d{2}/.test(String(x || '')) ? String(x).slice(0, 5) : null);
+  let start = t(e.start_time), end = t(e.end_time);
+  const allDay = !!e.all_day || !start;
+  if (allDay) { start = null; end = null; }
+  if (start && end && end < start) end = null;
+  return {
+    title, event_date: date, all_day: allDay, start_time: start, end_time: end,
+    location: e.location ? String(e.location).slice(0, 200) : null,
+    description: e.description ? String(e.description).slice(0, 2000) : null,
+    category: CATEGORIES[e.category] ? e.category : 'autre',
+    created_by_name: e.created_by_name ? String(e.created_by_name).slice(0, 40) : myName(),
+  };
+}
+async function importJSON(file, input) {
+  const sig = e => `${e.event_date}|${hm(e.start_time)}|${e.title.trim().toLowerCase()}`;
+  try {
+    let data;
+    try { data = JSON.parse(await file.text()); } catch { throw new UserError('Ce fichier n’est pas une sauvegarde Pink Date valide.'); }
+    const list = Array.isArray(data) ? data : data && data.events;
+    if (!Array.isArray(list)) throw new UserError('Ce fichier ne contient aucun rendez-vous.');
+    const rows = list.map(normalizeImported).filter(Boolean);
+    const existing = new Set(liveEvents().map(sig));
+    const fresh = rows.filter(r => !existing.has(sig(r)));
+    if (!fresh.length) { toast('Rien à importer : ces rendez-vous existent déjà.'); return; }
+    const ok = await confirmDialog({
+      title: 'Importer la sauvegarde ?',
+      text: `${fresh.length} rendez-vous seront ajoutés.${rows.length - fresh.length ? ` ${rows.length - fresh.length} déjà présents seront ignorés.` : ''}`,
+      ok: 'Importer', danger: false,
+    });
+    if (!ok) return;
+    const now = nowIso();
+    await commit(doc => {
+      for (const r of fresh) {
+        const id = uuid();
+        doc.events[id] = { id, ...r, created_by_device: null, created_at: now, updated_at: now, updated_by_name: myName() };
+      }
+    }, `${fresh.length} rendez-vous importés`);
+  } catch (err) {
+    toast(friendlyError(err), 'error');
+  } finally { input.value = ''; }
+}
+
+/* =====================================================================
+   AFFICHAGE : ACCUEIL, CALENDRIER, LISTE
+   ===================================================================== */
+function renderHeader() {
+  if (!state.doc) return;
+  $('#space-name').textContent = state.doc.meta.name;
+  setSync();
+}
+function setView(v) {
+  state.view = v;
+  $$('.view').forEach(x => { x.hidden = x.id !== `view-${v}`; });
+  $$('.tab[data-view]').forEach(t => t.classList.toggle('active', t.dataset.view === v));
+  renderView(v);
+  window.scrollTo(0, 0);
+}
+function renderView(v) {
+  if (v === 'home') renderHome();
+  else if (v === 'calendar') renderCalendar();
+  else if (v === 'list') renderList();
+  else if (v === 'settings') renderSettings();
+}
+/** Les paramètres ne sont pas redessinés automatiquement pour ne pas effacer une saisie. */
+function renderAll() {
+  if (state.screen !== 'app' || !state.doc) return;
+  if (state.view !== 'settings') renderView(state.view);
+}
+
+function evCard(e, { showDate = false } = {}) {
+  const c = cat(e);
+  return `<button type="button" class="ev" style="--c:${c.bg};--d:${c.dot}" data-action="open-event" data-id="${esc(e.id)}">
+    <span class="ev-emoji" aria-hidden="true">${c.emoji}</span>
+    <span class="ev-main">
+      <span class="ev-title">${esc(e.title)}</span>
+      <span class="ev-meta">
+        ${showDate ? `<span>${icon('calendar', 14)}${esc(fmtLong(e.event_date))}</span>` : ''}
+        <span>${icon('clock', 14)}${esc(timeLabel(e))}</span>
+        ${e.location ? `<span>${icon('pin', 14)}${esc(e.location)}</span>` : ''}
+      </span>
+      <span class="ev-by">${esc(authorLabel(e))}</span>
+    </span>
+  </button>`;
+}
+const emptyHTML = (text, day) =>
+  `<div class="empty">${esc(text)}<br><button type="button" class="btn primary sm" data-action="add-on-day" data-day="${day || todayKey()}">${icon('plus', 18)}<span>Ajouter un rendez-vous</span></button></div>`;
+
+function renderHome() {
+  const el = $('#view-home');
+  const tk = todayKey();
+  const now = new Date();
+  const nowT = `${pad(now.getHours())}:${pad(now.getMinutes())}`;
+  const name = myName();
+  const dayOfYear = Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000);
+  const all = sortedEvents();
+  const today = all.filter(e => e.event_date === tk);
+  const next = all.find(e => e.event_date > tk || (e.event_date === tk && !e.all_day && hm(e.start_time) >= nowT));
+  const upcoming = all.filter(e => e.event_date > tk && e !== next).slice(0, 5);
+
+  let nextHTML;
+  if (next) {
+    const c = cat(next);
+    const d = daysBetween(tk, next.event_date);
+    const when = d === 0 ? `Aujourd’hui à ${hm(next.start_time)}` : d === 1 ? 'Demain' : `Dans ${d} jours`;
+    nextHTML = `
+      <div class="next" role="button" tabindex="0" data-action="open-event" data-id="${esc(next.id)}">
+        <span class="next-deco" aria-hidden="true">♡</span>
+        <div class="next-label">Prochain rendez-vous</div>
+        <span class="next-count">${esc(when)}</span>
+        <h2>${c.emoji} ${esc(next.title)}</h2>
+        <p>${icon('calendar', 16)}${esc(fmtLong(next.event_date))}, ${esc(timeLabel(next).toLowerCase())}</p>
+        ${next.location ? `<p>${icon('pin', 16)}${esc(next.location)}</p>` : ''}
+      </div>`;
+  } else {
+    nextHTML = `
+      <div class="next static">
+        <span class="next-deco" aria-hidden="true">♡</span>
+        <div class="next-label">Prochain rendez-vous</div>
+        <h2 style="margin-top:8px">Rien de prévu pour l’instant 💌</h2>
+        <p>Et si vous planifiiez votre prochain moment à deux ?</p>
+      </div>`;
+  }
+
+  el.innerHTML = `
+    <section class="hero">
+      <span class="hero-ribbon" aria-hidden="true">🎀</span>
+      <p class="hero-hello">${name ? `Coucou ${esc(name)} ♡` : 'Coucou ♡'}</p>
+      <h1 class="hero-title">Notre petit monde ♡</h1>
+      <p class="hero-sub">Tous nos moments, au même endroit</p>
+      <span class="hero-date">${icon('calendar', 16)}${esc(fmtFull(tk))}</span>
+      <span class="hero-stars" aria-hidden="true">✦ ♡ ✦</span>
+    </section>`
+    + nextHTML
+    + `<button type="button" class="btn primary block add-big" data-action="add-event">${icon('plus', 20)}<span>Ajouter un rendez-vous</span></button>`
+    + `<div class="sec-title"><h3>Aujourd’hui</h3></div>`
+    + (today.length ? today.map(e => evCard(e)).join('') : '<p class="empty">Rien de prévu aujourd’hui. Un petit câlin, peut-être ? 🫶</p>')
+    + `<div class="sec-title"><h3>Prochainement</h3>${upcoming.length ? '<button type="button" class="link-btn" data-action="nav" data-view="list">Tout voir</button>' : ''}</div>`
+    + (upcoming.length ? upcoming.map(e => evCard(e, { showDate: true })).join('') : '<p class="empty">Aucun autre rendez-vous prévu pour le moment.</p>')
+    + `<p class="love-note"><span>♡</span> ${esc(QUOTES[dayOfYear % QUOTES.length])} <span>♡</span></p>`;
+}
+
+function renderCalendar() {
+  const el = $('#view-calendar');
+  const tk = todayKey();
+  const mode = state.calMode;
+  const by = eventsByDay();
+  if (!state.selectedDay) state.selectedDay = tk;
+  let title, body = '';
+
+  if (mode === 'month') {
+    const y = state.cursor.getFullYear(), m = state.cursor.getMonth();
+    title = cap(fmt(new Date(y, m, 1), { month: 'long', year: 'numeric' }));
+    const start = startOfWeek(new Date(y, m, 1));
+    const end = addDays(startOfWeek(new Date(y, m + 1, 0)), 6);
+    let cells = '';
+    for (let d = start; d <= end; d = addDays(d, 1)) {
+      const k = dateKey(d);
+      const evs = by[k] || [];
+      const cls = ['day', d.getMonth() !== m ? 'out' : '', k === tk ? 'today' : '', k === state.selectedDay ? 'sel' : ''].join(' ');
+      cells += `<button type="button" class="${cls}" data-action="select-day" data-day="${k}" aria-label="${esc(fmtLong(k))}${evs.length ? `, ${evs.length} rendez-vous` : ''}">
+        <span class="dnum">${d.getDate()}</span>
+        <span class="chips">${evs.slice(0, 3).map(e => {
+          const c = cat(e);
+          return `<span class="chip" style="--c:${c.bg};--d:${c.dot}" data-action="open-event" data-id="${esc(e.id)}">${esc(e.title)}</span>`;
+        }).join('')}${evs.length > 3 ? `<span class="more">+${evs.length - 3}</span>` : ''}</span>
+      </button>`;
+    }
+    const sel = state.selectedDay;
+    const selEvs = by[sel] || [];
+    body = `
+      <div class="cal">
+        <div class="wk" aria-hidden="true">${['L', 'M', 'M', 'J', 'V', 'S', 'D'].map(x => `<span>${x}</span>`).join('')}</div>
+        <div class="grid">${cells}</div>
+      </div>
+      <section class="day-panel">
+        <div class="panel-head"><h3>${esc(fmtLong(sel))}</h3>
+          <button type="button" class="btn primary sm" data-action="add-on-day" data-day="${sel}">${icon('plus', 18)}<span>Ajouter</span></button>
+        </div>
+        ${selEvs.length ? selEvs.map(e => evCard(e)).join('') : '<p class="empty">Rien de prévu ce jour-là ♡</p>'}
+      </section>
+      <p class="hint center">Astuce : touche deux fois un jour pour y ajouter un rendez-vous.</p>`;
+  } else {
+    const s = startOfWeek(state.cursor);
+    const e7 = addDays(s, 6);
+    title = `${fmt(s, { day: 'numeric', month: 'short' })} – ${fmt(e7, { day: 'numeric', month: 'short', year: 'numeric' })}`;
+    for (let i = 0; i < 7; i++) {
+      const d = addDays(s, i);
+      const k = dateKey(d);
+      const evs = by[k] || [];
+      body += `<div class="wday ${k === tk ? 'today' : ''}">
+        <div class="wday-head">
+          <div><b>${esc(cap(fmt(d, { weekday: 'long' })))}</b><small>${esc(fmt(d, { day: 'numeric', month: 'long' }))}</small></div>
+          <button type="button" class="icon-btn sm" data-action="add-on-day" data-day="${k}" aria-label="Ajouter un rendez-vous le ${esc(fmtLong(k))}">${icon('plus', 18)}</button>
+        </div>
+        ${evs.length ? evs.map(x => evCard(x)).join('') : '<p class="wday-empty">Rien de prévu</p>'}
+      </div>`;
+    }
+  }
+
+  el.innerHTML = `
+    <div class="cal-tools">
+      <div class="seg">
+        <button type="button" class="${mode === 'month' ? 'active' : ''}" data-action="cal-mode" data-mode="month">Mois</button>
+        <button type="button" class="${mode === 'week' ? 'active' : ''}" data-action="cal-mode" data-mode="week">Semaine</button>
+      </div>
+      <button type="button" class="btn ghost sm" data-action="cal-today">Aujourd’hui</button>
+    </div>
+    <div class="cal-head">
+      <button type="button" class="icon-btn" data-action="cal-prev" aria-label="Période précédente">${icon('chevL')}</button>
+      <h2 class="cal-title">${esc(title)}</h2>
+      <button type="button" class="icon-btn" data-action="cal-next" aria-label="Période suivante">${icon('chevR')}</button>
+    </div>
+    ${body}`;
+}
+function selectDay(k) {
+  if (state.calMode === 'month' && state.selectedDay === k) { openEditor(null, k); return; }
+  state.selectedDay = k;
+  const d = parseKey(k);
+  if (d.getMonth() !== state.cursor.getMonth() || d.getFullYear() !== state.cursor.getFullYear()) {
+    state.cursor = new Date(d.getFullYear(), d.getMonth(), 1);
+  }
+  renderCalendar();
+}
+function shiftCal(n) {
+  if (state.calMode === 'month') state.cursor = new Date(state.cursor.getFullYear(), state.cursor.getMonth() + n, 1);
+  else state.cursor = addDays(state.cursor, 7 * n);
+  renderCalendar();
+}
+
+function renderList() {
+  const el = $('#view-list');
+  if (!el.dataset.ready) {
+    el.innerHTML = `
+      <h1 class="page-title">Nos rendez-vous</h1>
+      <div class="seg" id="list-scope">
+        <button type="button" data-action="list-scope" data-scope="upcoming">À venir</button>
+        <button type="button" data-action="list-scope" data-scope="past">Passés</button>
+      </div>
+      <label class="search">${icon('search', 18)}<input id="list-search" type="search" placeholder="Rechercher un rendez-vous" autocomplete="off" aria-label="Rechercher"></label>
+      <div class="filters" id="list-filters">
+        <button type="button" class="fchip" data-action="list-filter" data-cat="all">Tout</button>
+        ${Object.entries(CATEGORIES).map(([k, c]) => `<button type="button" class="fchip" data-action="list-filter" data-cat="${k}">${c.emoji} ${esc(c.short)}</button>`).join('')}
+      </div>
+      <div id="list-results"></div>`;
+    el.dataset.ready = '1';
+    $('#list-search').value = state.search;
+  }
+  $$('#list-scope button').forEach(b => b.classList.toggle('active', b.dataset.scope === state.listScope));
+  $$('#list-filters .fchip').forEach(b => b.classList.toggle('active', b.dataset.cat === state.listFilter));
+  renderListResults();
+}
+function renderListResults() {
+  const box = $('#list-results');
+  if (!box) return;
+  const tk = todayKey();
+  const q = state.search.trim().toLowerCase();
+  let evs = sortedEvents().filter(e => (state.listScope === 'upcoming' ? e.event_date >= tk : e.event_date < tk));
+  if (state.listScope === 'past') evs = evs.reverse().slice(0, 300);
+  if (state.listFilter !== 'all') evs = evs.filter(e => e.category === state.listFilter);
+  if (q) evs = evs.filter(e => `${e.title} ${e.location || ''} ${e.description || ''}`.toLowerCase().includes(q));
+  if (!evs.length) {
+    box.innerHTML = q || state.listFilter !== 'all'
+      ? '<p class="empty">Aucun rendez-vous ne correspond à ta recherche.</p>'
+      : state.listScope === 'upcoming' ? emptyHTML('Aucun rendez-vous à venir pour l’instant.') : '<p class="empty">Aucun souvenir ici pour l’instant ♡</p>';
+    return;
+  }
+  let html = '', last = '';
+  for (const e of evs) {
+    if (e.event_date !== last) {
+      last = e.event_date;
+      html += `<h4 class="date-h">${esc(fmtFull(e.event_date))}${e.event_date === tk ? ' (aujourd’hui)' : ''}</h4>`;
+    }
+    html += evCard(e);
+  }
+  box.innerHTML = html;
+}
+
+/* ---------- Paramètres ---------- */
+function renderSettings() {
+  const el = $('#view-settings');
+  el.innerHTML = `
+    <h1 class="page-title">Paramètres</h1>
+
+    <section class="card">
+      <h3>${icon('user')} Mon prénom</h3>
+      <form data-form="name" novalidate>
+        <label class="field"><span>Prénom affiché sur mes rendez-vous (sur cet appareil)</span>
+          <input name="name" maxlength="40" required value="${esc(myName())}" autocomplete="given-name"></label>
+        <button type="submit" class="btn primary"><span>Enregistrer le prénom</span></button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h3>💞 Notre agenda</h3>
+      <form data-form="agenda-name" novalidate>
+        <label class="field"><span>Nom de l’agenda (visible par tout le monde)</span><input name="agenda" maxlength="60" required value="${esc(state.doc.meta.name)}"></label>
+        <button type="submit" class="btn primary"><span>Enregistrer le nom</span></button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h3>💌 Partager l’agenda</h3>
+      <p class="hint">Envoie ce lien, puis donne la phrase secrète séparément (de vive voix, c’est l’idéal).</p>
+      <div class="copy-box">${esc(appUrl())}</div>
+      <div class="row-btns">
+        <button type="button" class="btn ghost" data-action="copy-link">${icon('copy', 18)}<span>Copier le lien</span></button>
+        ${navigator.share ? `<button type="button" class="btn primary" data-action="share-link">${icon('share', 18)}<span>Partager</span></button>` : ''}
+      </div>
+      <details><summary>Afficher la phrase secrète</summary>
+        <div class="code-big">${esc(state.passphrase)}</div>
+        <button type="button" class="btn ghost" data-action="copy-pass">${icon('copy', 18)}<span>Copier la phrase secrète</span></button>
+      </details>
+    </section>
+
+    <section class="card">
+      <h3>${icon('key')} Changer la phrase secrète</h3>
+      <p class="hint">Tout l’agenda est rechiffré avec la nouvelle phrase. Les autres appareils devront la saisir.</p>
+      <form data-form="change-pass" novalidate>
+        <label class="field"><span>Nouvelle phrase secrète (10 caractères minimum)</span><input type="password" name="pass" required minlength="10" autocomplete="new-password"></label>
+        <label class="field"><span>Confirme la nouvelle phrase</span><input type="password" name="pass2" required minlength="10" autocomplete="new-password"></label>
+        <button type="submit" class="btn primary"><span>Changer la phrase secrète</span></button>
+      </form>
+    </section>
+
+    <section class="card">
+      <h3>💾 Sauvegarde</h3>
+      <p class="hint">Garde une copie de temps en temps. Le JSON se réimporte ici ; l’ICS s’ouvre dans Google Agenda, Apple Calendrier ou Outlook.</p>
+      <div class="btn-col">
+        <button type="button" class="btn ghost" data-action="export-json">${icon('download', 18)}<span>Exporter la sauvegarde (JSON)</span></button>
+        <button type="button" class="btn ghost" data-action="export-ics">${icon('calendar', 18)}<span>Exporter vers un agenda (ICS)</span></button>
+        <label class="btn ghost file-btn">${icon('upload', 18)}<span>Importer une sauvegarde JSON</span><input type="file" accept="application/json,.json" data-change="import-json" hidden></label>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>${icon('lock')} Cet appareil</h3>
+      <p class="hint">Verrouiller efface la phrase secrète de cet appareil. Il faudra la ressaisir pour rouvrir l’agenda.</p>
+      <button type="button" class="btn ghost" data-action="lock"><span>Verrouiller cet appareil</span></button>
+    </section>
+
+    <section class="card">
+      <h3>📱 Sur l’écran d’accueil</h3>
+      <ul class="tips">
+        <li><b>iPhone (Safari)</b> : bouton Partager, puis « Sur l’écran d’accueil ».</li>
+        <li><b>Android (Chrome)</b> : menu ⋮, puis « Ajouter à l’écran d’accueil ».</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h3>❓ Aide</h3>
+      <button type="button" class="btn ghost" data-action="open-guide"><span>Ouvrir le guide</span></button>
+    </section>
+
+    <p class="footer-note">Pink Date ♡ fait avec amour</p>`;
+}
+
+/* =====================================================================
+   FORMULAIRES
+   ===================================================================== */
+const FORMS = {
+  unlock: f => busy($('[type=submit]', f), async () => {
+    formMsg('#unlock-msg', '');
+    const fd = new FormData(f);
+    const name = String(fd.get('name') || '').trim();
+    const pass = String(fd.get('pass') || '');
+    if (!name) return formMsg('#unlock-msg', 'Indique ton prénom.');
+    if (!pass) return formMsg('#unlock-msg', 'Saisis la phrase secrète.');
+    const rec = await apiGet();
+    if (!isEncrypted(rec)) { showScreen('create'); return; }
+    state.passphrase = pass;
+    state.saltB64 = rec.salt;
+    state.key = await deriveKey(pass, unb64(rec.salt));
+    try { state.doc = await decryptRecord(rec); }
+    catch (e) {
+      state.key = null; state.passphrase = null;
+      if (e instanceof WrongPassError) return formMsg('#unlock-msg', 'Phrase secrète incorrecte.');
+      throw e;
+    }
+    lsSet(LS.name, name.slice(0, 40));
+    lsSet(LS.pass, pass);
+    f.reset();
+    enterApp();
+  }),
+
+  create: f => busy($('[type=submit]', f), async () => {
+    formMsg('#create-msg', '');
+    const fd = new FormData(f);
+    const agenda = String(fd.get('agenda') || '').trim();
+    const name = String(fd.get('name') || '').trim();
+    const p1 = String(fd.get('pass') || ''), p2 = String(fd.get('pass2') || '');
+    if (!agenda) return formMsg('#create-msg', 'Donne un nom à votre agenda.');
+    if (!name) return formMsg('#create-msg', 'Indique ton prénom.');
+    if (p1.length < 10) return formMsg('#create-msg', 'La phrase secrète doit contenir au moins 10 caractères.');
+    if (p1 !== p2) return formMsg('#create-msg', 'Les deux phrases ne correspondent pas.');
+    await queue(async () => {
+      // Sécurité : on ne remplace jamais un agenda déjà créé
+      const rec = await apiGet();
+      if (isEncrypted(rec)) {
+        showScreen('unlock');
+        formMsg('#unlock-msg', 'Un agenda existe déjà : saisis sa phrase secrète.', 'ok');
+        return;
+      }
+      const salt = crypto.getRandomValues(new Uint8Array(16));
+      state.key = await deriveKey(p1, salt);
+      state.saltB64 = b64(salt);
+      state.passphrase = p1;
+      state.doc = normalizeDoc({ meta: { name: agenda.slice(0, 60), name_updated_at: nowIso() }, events: {} });
+      await apiPut(await encryptDoc(state.doc));
+      lsSet(LS.name, name.slice(0, 40));
+      lsSet(LS.pass, p1);
+      f.reset();
+      enterApp();
+      toast('Agenda créé ! Partage-le depuis les Paramètres 💌', 'ok', 4500);
+    });
+  }),
+
+  name: f => {
+    const name = String(new FormData(f).get('name') || '').trim();
+    if (!name) { toast('Indique ton prénom.', 'error'); return; }
+    lsSet(LS.name, name.slice(0, 40));
+    toast('Prénom enregistré');
+  },
+
+  'agenda-name': f => {
+    const name = String(new FormData(f).get('agenda') || '').trim();
+    if (!name) { toast('Donne un nom à votre agenda.', 'error'); return; }
+    busy($('[type=submit]', f), () => commit(doc => { doc.meta = { name: name.slice(0, 60), name_updated_at: nowIso() }; }, 'Nom enregistré'));
+  },
+
+  'change-pass': f => busy($('[type=submit]', f), async () => {
+    const fd = new FormData(f);
+    const p1 = String(fd.get('pass') || ''), p2 = String(fd.get('pass2') || '');
+    if (p1.length < 10) throw new UserError('La phrase secrète doit contenir au moins 10 caractères.');
+    if (p1 !== p2) throw new UserError('Les deux phrases ne correspondent pas.');
+    const ok = await confirmDialog({ title: 'Changer la phrase secrète ?', text: 'Les autres appareils devront saisir la nouvelle phrase pour rouvrir l’agenda.', ok: 'Changer', danger: false });
+    if (!ok) return;
+    await queue(async () => {
+      const remote = await pull();
+      const merged = mergeDocs(remote, state.doc);
+      const old = { key: state.key, salt: state.saltB64, pass: state.passphrase };
+      const salt = crypto.getRandomValues(new Uint8Array(16));
+      state.key = await deriveKey(p1, salt);
+      state.saltB64 = b64(salt);
+      state.passphrase = p1;
+      try { await apiPut(await encryptDoc(merged)); }
+      catch (e) { state.key = old.key; state.saltB64 = old.salt; state.passphrase = old.pass; throw e; }
+      state.doc = merged;
+      state.needsPush = false;
+      lsSet(LS.pass, p1);
+    });
+    f.reset();
+    renderSettings();
+    toast('Phrase secrète changée. Donne la nouvelle à ta moitié ♡', 'ok', 5000);
+  }),
+
+  event: f => submitEvent(f),
+};
+
+/* =====================================================================
+   ÉVÉNEMENTS DE L’INTERFACE
+   ===================================================================== */
+const ACTIONS = {
+  'nav': t => setView(t.dataset.view),
+  'add-event': () => openEditor(null, state.view === 'calendar' ? state.selectedDay : todayKey()),
+  'open-event': (t, e) => { e.stopPropagation(); openEvent(t.dataset.id); },
+  'select-day': t => selectDay(t.dataset.day),
+  'add-on-day': t => openEditor(null, t.dataset.day),
+  'cal-prev': () => shiftCal(-1),
+  'cal-next': () => shiftCal(1),
+  'cal-today': () => { state.cursor = new Date(); state.selectedDay = todayKey(); renderCalendar(); },
+  'cal-mode': t => { state.calMode = t.dataset.mode; state.cursor = parseKey(state.selectedDay || todayKey()); renderCalendar(); },
+  'list-scope': t => { state.listScope = t.dataset.scope; renderList(); },
+  'list-filter': t => { state.listFilter = t.dataset.cat; renderList(); },
+  'modal-close': () => closeModal(),
+  'modal-backdrop': () => { if (!state.modalLocked) closeModal(); },
+  'confirm-yes': () => closeConfirm(true),
+  'confirm-no': () => closeConfirm(false),
+  'event-edit': t => { const ev = state.doc.events[t.dataset.id]; if (ev && !ev.deleted) openEditor(ev); },
+  'event-delete': t => deleteEvent(t.dataset.id),
+  'reload': () => location.reload(),
+  'copy-link': () => copyText(appUrl(), 'Lien copié'),
+  'share-link': () => navigator.share({ title: 'Pink Date ♡', text: 'Notre agenda partagé ♡', url: appUrl() }).catch(() => {}),
+  'copy-pass': () => copyText(state.passphrase, 'Phrase secrète copiée'),
+  'lock': async () => {
+    if (state.needsPush) { toast('Attends que tes derniers changements soient envoyés.', 'error'); return; }
+    const ok = await confirmDialog({ title: 'Verrouiller cet appareil ?', text: 'Il faudra ressaisir la phrase secrète pour rouvrir l’agenda ici.', ok: 'Verrouiller' });
+    if (ok) lock('');
+  },
+  'export-json': () => exportJSON(),
+  'export-ics': () => exportICS(),
+  'open-guide': () => openGuide(),
+};
+
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-action]');
+  if (!t) return;
+  const fn = ACTIONS[t.dataset.action];
+  if (fn) fn(t, e);
+});
+document.addEventListener('submit', e => {
+  const f = e.target;
+  const fn = FORMS[f.dataset.form];
+  if (!fn) return;
+  e.preventDefault();
+  fn(f);
+});
+document.addEventListener('change', e => {
+  const t = e.target;
+  if (t.name === 'all_day' && t.form && t.form.id === 'form-event') $('.times', t.form).hidden = t.checked;
+  if (t.dataset.change === 'import-json' && t.files && t.files[0]) importJSON(t.files[0], t);
+});
+document.addEventListener('input', e => {
+  if (e.target.id === 'list-search') { state.search = e.target.value; renderListResults(); }
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    if (!$('#confirm').hidden) closeConfirm(false);
+    else if (!$('#modal').hidden && !state.modalLocked) closeModal();
+  }
+  if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[role=button][data-action]')) {
+    e.preventDefault();
+    e.target.click();
+  }
+});
+
+/* =====================================================================
+   DÉMARRAGE
+   ===================================================================== */
+function isConfigured() {
+  return CONFIG.BIN_ID && CONFIG.API_KEY && !CONFIG.BIN_ID.includes('COLLE-ICI') && !CONFIG.API_KEY.includes('COLLE-ICI');
+}
+
+async function boot() {
+  $$('[data-icon]').forEach(el => { el.outerHTML = icon(el.dataset.icon, Number(el.dataset.size) || 22); });
+
+  if (!isConfigured()) {
+    $('#setup-guide').innerHTML = $('#guide-tpl').innerHTML;
+    showScreen('setup');
+    return;
+  }
+  if (!window.crypto || !crypto.subtle) {
+    showFatal('Ce navigateur ne permet pas le chiffrement. Ouvre l’agenda depuis son adresse https:// (GitHub Pages) avec un navigateur à jour.');
+    return;
+  }
+
+  $('[name=name]', $('#screen-unlock')).value = myName();
+  $('[name=name]', $('#screen-create')).value = myName();
+
+  try {
+    const rec = await apiGet();
+    if (!isEncrypted(rec)) { showScreen('create'); return; }
+    const pass = lsGet(LS.pass);
+    if (pass) {
+      state.passphrase = pass;
+      state.saltB64 = rec.salt;
+      state.key = await deriveKey(pass, unb64(rec.salt));
+      try {
+        state.doc = await decryptRecord(rec);
+        enterApp();
+        return;
+      } catch (e) {
+        if (!(e instanceof WrongPassError)) throw e;
+        lock('La phrase secrète a été changée : saisis la nouvelle.');
+        return;
+      }
+    }
+    showScreen('unlock');
+  } catch (err) {
+    console.error(err);
+    showFatal(friendlyError(err));
+  }
+}
+
+boot();
+</script>
+</body>
+</html>
